@@ -1,8 +1,8 @@
-import questions from "../data/kb/questions.json";
-import lessons from "../data/kb/lessons.json";
-import topics from "../data/kb/topics.json";
-import sources from "../data/kb/sources.json";
-import officialSampleQuestions from "../data/kb/official_sample_questions.json";
+import questions from "../data/kb/questions.json" with { type: "json" };
+import lessons from "../data/kb/lessons.json" with { type: "json" };
+import topics from "../data/kb/topics.json" with { type: "json" };
+import sources from "../data/kb/sources.json" with { type: "json" };
+import officialSampleQuestions from "../data/kb/official_sample_questions.json" with { type: "json" };
 
 const memoryStore = new Map();
 const webhookSecretPath = "telegram-webhook";

@@ -52,3 +52,4 @@ The current implementation keeps detailed attempts indefinitely so progress and 
 - Answers are inline buttons only.
 - Lessons and questions come from the reviewed KB.
 - The bot is conservative about scoring and only uses questions with valid answer source status.
+- Local smoke test: `npm run simulate:bot`.
