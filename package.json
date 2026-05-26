@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "check": "node --check src/worker.js",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
     "kb:generate": "node scripts/generate-kb.mjs",
     "kb:validate": "node scripts/generate-kb.mjs --validate-only"
   },
