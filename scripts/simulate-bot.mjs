@@ -1,7 +1,9 @@
+import fs from "node:fs/promises";
 import bot from "../src/worker.js";
 
 const sentMessages = [];
 const telegramFetch = globalThis.fetch;
+const localEnv = await loadDotEnvFile(".env");
 
 globalThis.fetch = async (input, init = {}) => {
   const url = typeof input === "string" ? input : input.url;
@@ -23,6 +25,15 @@ const memory = new Map();
 const env = {
   TELEGRAM_BOT_TOKEN: "test-token",
   TELEGRAM_ALLOWED_USER_ID: "123",
+  LLM_API_KEY: localEnv.LLM_API_KEY ?? process.env.LLM_API_KEY,
+  LLM_MODEL: localEnv.LLM_MODEL ?? process.env.LLM_MODEL,
+  LLM_BASE_URL: localEnv.LLM_BASE_URL ?? process.env.LLM_BASE_URL,
+  OPENAI_API_KEY: localEnv.OPENAI_API_KEY ?? process.env.OPENAI_API_KEY,
+  OPENAI_MODEL: localEnv.OPENAI_MODEL ?? process.env.OPENAI_MODEL,
+  OPENAI_BASE_URL: localEnv.OPENAI_BASE_URL ?? process.env.OPENAI_BASE_URL,
+  NVIDIA_API_KEY: localEnv.NVIDIA_API_KEY ?? process.env.NVIDIA_API_KEY,
+  NVIDIA_MODEL: localEnv.NVIDIA_MODEL ?? process.env.NVIDIA_MODEL,
+  NVIDIA_BASE_URL: localEnv.NVIDIA_BASE_URL ?? process.env.NVIDIA_BASE_URL,
   LEARNING_KV: {
     async get(key, options) {
       const value = memory.get(key);
@@ -108,4 +119,33 @@ function tryParseJSON(text) {
   } catch {
     return null;
   }
+}
+
+async function loadDotEnvFile(filename) {
+  try {
+    const raw = await fs.readFile(filename, "utf8");
+    return parseDotEnv(raw);
+  } catch {
+    return {};
+  }
+}
+
+function parseDotEnv(raw) {
+  const result = {};
+  for (const line of String(raw).split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (!match) continue;
+    const [, key, value] = match;
+    result[key] = unquote(value.trim());
+  }
+  return result;
+}
+
+function unquote(value) {
+  if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    return value.slice(1, -1);
+  }
+  return value;
 }

@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "check": "node --check src/worker.js",
+    "test": "node --test",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "simulate:bot": "node scripts/simulate-bot.mjs",
+    "preview:bot": "node scripts/preview-bot.mjs",
     "kb:generate": "node scripts/generate-kb.mjs",
     "kb:validate": "node scripts/generate-kb.mjs --validate-only"
   },

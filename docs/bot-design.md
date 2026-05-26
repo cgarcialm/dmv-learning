@@ -21,6 +21,8 @@ It uses the deterministic KB in `data/kb/` and stores learner state in Cloudflar
 - `TELEGRAM_ALLOWED_USER_ID`
 - `TELEGRAM_WEBHOOK_SECRET` optional
 - `TELEGRAM_WEBHOOK_PATH` optional
+- `TELEGRAM_PERSIST_PROGRESS` optional, set to `false` to avoid writing progress during testing
+- Optional learn-mode AI vars: `LLM_API_KEY`, `LLM_MODEL`, `LLM_BASE_URL`, or provider-specific `OPENAI_*` / `NVIDIA_*`
 
 ## Supported Commands
 
@@ -52,4 +54,5 @@ The current implementation keeps detailed attempts indefinitely so progress and 
 - Answers are inline buttons only.
 - Lessons and questions come from the reviewed KB.
 - The bot is conservative about scoring and only uses questions with valid answer source status.
+- Free-text in learn mode can call an LLM when configured, but it stays anchored to the current lesson.
 - Local smoke test: `npm run simulate:bot`.

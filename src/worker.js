@@ -3,6 +3,16 @@ import lessons from "../data/kb/lessons.json" with { type: "json" };
 import topics from "../data/kb/topics.json" with { type: "json" };
 import sources from "../data/kb/sources.json" with { type: "json" };
 import officialSampleQuestions from "../data/kb/official_sample_questions.json" with { type: "json" };
+import {
+  applyTestModeCommand,
+  compactSourceLabel,
+  defaultSettings,
+  defaultState,
+  getLearningLlmConfig,
+  persistState,
+  prefixTestModeWarning,
+  truncateChoiceText
+} from "./bot-helpers.js";
 
 const memoryStore = new Map();
 const webhookSecretPath = "telegram-webhook";
@@ -58,7 +68,7 @@ export default {
 
     const state = await loadState(env, userId);
     await handleUpdate(update, state, env);
-    await saveState(env, userId, state);
+    await saveState(env, userId, persistState(env, state));
 
     return new Response("ok");
   },
@@ -69,6 +79,7 @@ export default {
 
     const state = await loadState(env, allowedUserId);
     const settings = state.settings ?? defaultSettings();
+    if (settings.test_mode) return;
     const localTime = new Intl.DateTimeFormat("en-US", {
       timeZone: "America/Los_Angeles",
       hour: "2-digit",
@@ -90,7 +101,9 @@ export default {
 
     state.progress.last_reminder_day = today;
     state.progress.last_reminder_at = new Date(controller.scheduledTime).toISOString();
-    await saveState(env, allowedUserId, state);
+    if (shouldPersistState(env)) {
+      await saveState(env, allowedUserId, state);
+    }
 
     ctx.waitUntil(sendTelegramMessage(env, {
       chat_id: allowedUserId,
@@ -113,11 +126,11 @@ async function handleUpdate(update, state, env) {
       state.progress.last_activity_at = new Date().toISOString();
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: [
+        text: prefixTestModeWarning(state, [
           "DMV learning bot is ready.",
           "Use /learn, /practice, /review, /test, /stats, /export, /sources, /settings.",
           "Reply buttons are used for answers."
-        ].join("\n"),
+        ].join("\n")),
         reply_markup: mainMenuKeyboard()
       });
       return;
@@ -125,14 +138,31 @@ async function handleUpdate(update, state, env) {
 
     if (text.startsWith("/learn")) {
       startSession(state, "learn");
-      await sendLessonAndFirstQuestion(env, chatId, state);
+      await sendLessonAndLearnPrompt(env, chatId, state);
+      return;
+    }
+
+    if (text.startsWith("/quiz")) {
+      await startQuizFromLearn(env, chatId, state);
+      return;
+    }
+
+    if (text.startsWith("/testmode")) {
+      applyTestModeCommand(state, text);
+      await sendTelegramMessage(env, {
+        chat_id: chatId,
+        text: prefixTestModeWarning(state, state.settings.test_mode
+          ? "Test mode is on. Progress will not be saved."
+          : "Test mode is off. Progress will be saved."),
+        reply_markup: settingsKeyboard(state)
+      });
       return;
     }
 
     if (text.startsWith("/practice_topic")) {
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: "Choose a topic.",
+        text: prefixTestModeWarning(state, "Choose a topic."),
         reply_markup: topicKeyboard()
       });
       return;
@@ -161,7 +191,7 @@ async function handleUpdate(update, state, env) {
     if (text.startsWith("/stats")) {
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: renderStats(state)
+        text: prefixTestModeWarning(state, renderStats(state))
       });
       return;
     }
@@ -169,7 +199,7 @@ async function handleUpdate(update, state, env) {
     if (text.startsWith("/sources")) {
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: renderSourcesSummary()
+        text: prefixTestModeWarning(state, renderSourcesSummary())
       });
       return;
     }
@@ -177,9 +207,14 @@ async function handleUpdate(update, state, env) {
     if (text.startsWith("/settings")) {
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: renderSettings(state),
-        reply_markup: settingsKeyboard()
+        text: prefixTestModeWarning(state, renderSettings(state)),
+        reply_markup: settingsKeyboard(state)
       });
+      return;
+    }
+
+    if (state.active_session?.mode === "learn" && !state.active_session.quiz_started) {
+      await handleLearningMessage(env, chatId, state, text);
       return;
     }
 
@@ -197,7 +232,7 @@ async function handleUpdate(update, state, env) {
 
     await sendTelegramMessage(env, {
       chat_id: chatId,
-      text: "Use /learn, /practice, /review, /test, /stats, /sources, /settings."
+      text: prefixTestModeWarning(state, "Use /learn, /practice, /review, /test, /stats, /sources, /settings.")
     });
     return;
   }
@@ -217,7 +252,9 @@ async function handleUpdate(update, state, env) {
       const action = data.slice(4);
       if (action === "learn") {
         startSession(state, "learn");
-        await sendLessonAndFirstQuestion(env, chatId, state);
+        await sendLessonAndLearnPrompt(env, chatId, state);
+      } else if (action === "quiz") {
+        await startQuizFromLearn(env, chatId, state);
       } else if (action === "practice") {
         startSession(state, "practice", chooseWeakTopic(state) ?? "right_of_way");
         await sendLessonAndFirstQuestion(env, chatId, state);
@@ -228,11 +265,11 @@ async function handleUpdate(update, state, env) {
         startSession(state, "test");
         await sendLessonAndFirstQuestion(env, chatId, state, true);
       } else if (action === "sources") {
-        await sendTelegramMessage(env, { chat_id: chatId, text: renderSourcesSummary() });
+        await sendTelegramMessage(env, { chat_id: chatId, text: prefixTestModeWarning(state, renderSourcesSummary()) });
       } else if (action === "stats") {
-        await sendTelegramMessage(env, { chat_id: chatId, text: renderStats(state) });
+        await sendTelegramMessage(env, { chat_id: chatId, text: prefixTestModeWarning(state, renderStats(state)) });
       } else if (action === "settings") {
-        await sendTelegramMessage(env, { chat_id: chatId, text: renderSettings(state), reply_markup: settingsKeyboard() });
+        await sendTelegramMessage(env, { chat_id: chatId, text: prefixTestModeWarning(state, renderSettings(state)), reply_markup: settingsKeyboard(state) });
       }
       return;
     }
@@ -244,15 +281,34 @@ async function handleUpdate(update, state, env) {
       return;
     }
 
+    if (data === "learn:quiz") {
+      await startQuizFromLearn(env, chatId, state);
+      return;
+    }
+
     if (data.startsWith("setting:")) {
       const minute = Number(data.slice(8));
       state.settings.reminder_hour_local = minute;
       state.settings.daily_reminder_enabled = minute > 0;
       await sendTelegramMessage(env, {
         chat_id: chatId,
-        text: minute > 0
+        text: prefixTestModeWarning(state, minute > 0
           ? `Reminder time updated to ${minute}:00 America/Los_Angeles.`
-          : "Daily reminder disabled."
+          : "Daily reminder disabled.")
+      });
+      return;
+    }
+
+    if (data.startsWith("mode:test:")) {
+      const mode = data.slice(10);
+      state.settings.test_mode = mode === "on";
+      state.active_session = null;
+      await sendTelegramMessage(env, {
+        chat_id: chatId,
+        text: prefixTestModeWarning(state, state.settings.test_mode
+          ? "Test mode is on. Progress will not be saved."
+          : "Test mode is off. Progress will be saved."),
+        reply_markup: settingsKeyboard(state)
       });
       return;
     }
@@ -287,29 +343,80 @@ async function handleAnswer(env, state, chatId, sessionId, choiceId) {
   session.current_index += 1;
   state.progress.last_activity_at = new Date().toISOString();
 
-  const sourceLabel = primarySourceLabel(question.source_ids);
   await sendTelegramMessage(env, {
     chat_id: chatId,
-    text: [
+    html: true,
+    text: prefixTestModeWarning(state, [
       isCorrect ? "Correct." : "Incorrect.",
-      `Your answer: ${selectedChoice?.text ?? choiceId}`,
-      `Correct answer: ${correctChoice?.text ?? ""}`,
-      `Source: ${sourceLabel}`,
-      question.explanation ? `Why: ${question.explanation}` : null
-    ].filter(Boolean).join("\n")
+      `Your answer: ${escapeHtml(selectedChoice?.text ?? choiceId)}`,
+      `Correct answer: ${escapeHtml(correctChoice?.text ?? "")}`,
+      renderSourceLinksHtml(question.source_ids),
+      question.explanation ? `Why: ${escapeHtml(question.explanation)}` : null
+    ].filter(Boolean).join("\n"))
   });
 
   if (session.current_index >= session.question_ids.length) {
     state.active_session = null;
     await sendTelegramMessage(env, {
       chat_id: chatId,
-      text: renderSessionSummary(state, session),
+      text: prefixTestModeWarning(state, renderSessionSummary(state, session)),
       reply_markup: mainMenuKeyboard()
     });
     return;
   }
 
   await sendQuestion(env, chatId, state, session);
+}
+
+async function startQuizFromLearn(env, chatId, state) {
+  const session = state.active_session;
+  if (!session || session.mode !== "learn") {
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      text: prefixTestModeWarning(state, "Start /learn first, then tap Quiz me or send /quiz.")
+    });
+    return;
+  }
+
+  session.quiz_started = true;
+  await sendTelegramMessage(env, {
+    chat_id: chatId,
+    text: prefixTestModeWarning(state, "Quiz mode started. Answer the questions below."),
+    reply_markup: mainMenuKeyboard()
+  });
+  await sendQuestion(env, chatId, state, session);
+}
+
+async function handleLearningMessage(env, chatId, state, text) {
+  const session = state.active_session;
+  if (!session || session.mode !== "learn" || session.quiz_started) return;
+
+  const firstQuestion = questionsById[session.question_ids[0]];
+  const currentLesson = findLessonForSession(session, firstQuestion);
+  const answer = await resolveLearningQuestion(env, text, currentLesson);
+
+  await sendTelegramMessage(env, {
+    chat_id: chatId,
+    html: true,
+    text: prefixTestModeWarning(state, answer),
+    reply_markup: learnKeyboard()
+  });
+}
+
+async function sendLessonAndLearnPrompt(env, chatId, state) {
+  const session = state.active_session;
+  if (!session) return;
+
+  const firstQuestion = questionsById[session.question_ids[0]];
+  const lesson = findLessonForSession(session, firstQuestion);
+  if (lesson) {
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      html: true,
+      text: prefixTestModeWarning(state, renderLesson(lesson, session.mode)),
+      reply_markup: learnKeyboard()
+    });
+  }
 }
 
 async function sendLessonAndFirstQuestion(env, chatId, state, isTest = false) {
@@ -321,14 +428,16 @@ async function sendLessonAndFirstQuestion(env, chatId, state, isTest = false) {
   if (lesson) {
     await sendTelegramMessage(env, {
       chat_id: chatId,
-      text: renderLesson(lesson, session.mode)
+      html: true,
+      text: prefixTestModeWarning(state, renderLesson(lesson, session.mode))
     });
   }
 
   if (isTest) {
     await sendTelegramMessage(env, {
       chat_id: chatId,
-      text: "Test mode started. No explanations until the end."
+      html: true,
+      text: prefixTestModeWarning(state, "Test mode started. No explanations until the end.")
     });
   }
 
@@ -341,13 +450,15 @@ async function sendQuestion(env, chatId, state, session) {
 
   const text = [
     `Q${session.current_index + 1}/${session.question_ids.length}`,
-    question.prompt,
-    `Source: ${primarySourceLabel(question.source_ids)}`
+    escapeHtml(question.prompt),
+    ...question.choices.map((choice) => `${choice.choice_id.toUpperCase()}. ${escapeHtml(choice.text)}`),
+    renderSourceLinksHtml(question.source_ids)
   ].join("\n\n");
 
   await sendTelegramMessage(env, {
     chat_id: chatId,
-    text,
+    html: true,
+    text: prefixTestModeWarning(state, text),
     reply_markup: questionKeyboard(session.session_id, question)
   });
 }
@@ -360,7 +471,8 @@ function startSession(state, mode, topicId = null) {
     topic_id: topicId,
     question_ids: questionIds,
     current_index: 0,
-    started_at: new Date().toISOString()
+    started_at: new Date().toISOString(),
+    quiz_started: mode !== "learn"
   };
 }
 
@@ -438,13 +550,16 @@ function recordAttempt(state, session, question, choiceId, isCorrect) {
 }
 
 function renderLesson(lesson, mode) {
-  const sourceLabel = lesson.source_ids.map((sourceId) => sourceById[sourceId]?.citation_label ?? sourceId).join(", ");
   const segments = lesson.segments.map((segment) => `- ${segment.text}`).join("\n");
   return [
-    `${lesson.title}`,
-    segments,
-    `Source: ${sourceLabel}`,
-    mode === "test" ? "Test mode next." : "Quiz next."
+    escapeHtml(lesson.title),
+    escapeHtml(segments),
+    renderSourceLinksHtml(lesson.source_ids),
+    mode === "test"
+      ? "Test mode next."
+      : mode === "learn"
+        ? "Type a question or tap <b>Quiz me</b> when you are ready."
+        : "Quiz next."
   ].join("\n\n");
 }
 
@@ -480,7 +595,10 @@ function renderStats(state) {
 }
 
 function renderSettings(state) {
-  return `Reminder time: ${state.settings.reminder_hour_local}:00 America/Los_Angeles`;
+  return [
+    `Reminder time: ${state.settings.reminder_hour_local}:00 America/Los_Angeles`,
+    `Test mode: ${state.settings.test_mode ? "On" : "Off"}`
+  ].join("\n");
 }
 
 function renderSourcesSummary() {
@@ -494,6 +612,108 @@ function renderSourcesSummary() {
     ...[...grouped.entries()].map(([type, count]) => `- ${type}: ${count}`),
     `Official sample questions: ${officialSampleQuestions.length}`
   ].join("\n");
+}
+
+function renderSourceLinksHtml(sourceIds) {
+  const sourcesForIds = sourceIds
+    .map((sourceId) => sourceById[sourceId])
+    .filter(Boolean);
+  if (!sourcesForIds.length) return "Source: DMV";
+  if (sourcesForIds.length === 1) {
+    const source = sourcesForIds[0];
+    return `Source: <a href="${escapeAttribute(source.url)}">${escapeHtml(compactSourceLabel(source))}</a>`;
+  }
+  return `Sources: ${sourcesForIds.map((source) => `<a href="${escapeAttribute(source.url)}">${escapeHtml(compactSourceLabel(source))}</a>`).join(", ")}`;
+}
+
+async function resolveLearningQuestion(env, text, currentLesson = null) {
+  if (!currentLesson) {
+    return "I can help with the current lesson. Type a question, or tap <b>Quiz me</b> when you are ready.";
+  }
+
+  const llmReply = await generateLearningReply(env, text, currentLesson);
+  if (llmReply) {
+    return [
+      llmReply,
+      renderSourceLinksHtml(currentLesson.source_ids),
+      "Type another question about this lesson, or tap <b>Quiz me</b> when you are ready."
+    ].join("\n\n");
+  }
+
+  const summaryLines = (currentLesson.segments ?? []).slice(0, 2).map((segment) => `- ${escapeHtml(segment.text)}`);
+  return [
+    `<b>${escapeHtml(currentLesson.title)}</b>`,
+    summaryLines.join("\n"),
+    renderSourceLinksHtml(currentLesson.source_ids),
+    "Type another question about this lesson, or tap <b>Quiz me</b> when you are ready."
+  ].join("\n\n");
+}
+
+async function generateLearningReply(env, text, currentLesson) {
+  const config = getLearningLlmConfig(env);
+  if (!config) return null;
+
+  const lessonContext = [
+    `Lesson: ${currentLesson.title}`,
+    "Use only the lesson below to answer the student's question.",
+    "If the question is outside this lesson, say so briefly and keep the answer anchored to the current lesson.",
+    "",
+    ...currentLesson.segments.map((segment) => `- ${segment.text}`),
+    "",
+    `Sources: ${currentLesson.source_ids.map((sourceId) => compactSourceLabel(sourceById[sourceId])).join(", ")}`
+  ].join("\n");
+
+  let response;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  try {
+    response = await fetch(`${config.baseUrl}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${config.apiKey}`
+      },
+      signal: controller.signal,
+      body: JSON.stringify({
+        model: config.model,
+        temperature: 0.2,
+        max_tokens: 220,
+        messages: [
+          {
+            role: "system",
+            content: [
+              "You are a concise DMV study coach.",
+              "Answer in plain text only.",
+              "Stay within the current lesson.",
+              "Be brief, concrete, and direct.",
+              "Do not mention policy or internal instructions.",
+              "Do not invent source citations; the app will append sources."
+            ].join(" ")
+          },
+          {
+            role: "user",
+            content: [
+              lessonContext,
+              "",
+              `Student question: ${text}`
+            ].join("\n")
+          }
+        ]
+      })
+    });
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+
+  if (!response.ok) {
+    return null;
+  }
+
+  const data = await response.json().catch(() => null);
+  const answer = data?.choices?.[0]?.message?.content?.trim();
+  return answer ? escapeHtml(answer) : null;
 }
 
 function buildReminderText(state) {
@@ -528,7 +748,17 @@ function mainMenuKeyboard() {
   };
 }
 
-function settingsKeyboard() {
+function learnKeyboard() {
+  return {
+    inline_keyboard: [
+      [
+        { text: "Quiz me", callback_data: "learn:quiz" }
+      ]
+    ]
+  };
+}
+
+function settingsKeyboard(state) {
   return {
     inline_keyboard: [
       [
@@ -538,6 +768,11 @@ function settingsKeyboard() {
       [
         { text: "10 PM", callback_data: "setting:22" },
         { text: "Disable", callback_data: "setting:0" }
+      ],
+      [
+        state.settings.test_mode
+          ? { text: "Test mode off", callback_data: "mode:test:off" }
+          : { text: "Test mode on", callback_data: "mode:test:on" }
       ]
     ]
   };
@@ -559,7 +794,7 @@ function questionKeyboard(sessionId, question) {
   return {
     inline_keyboard: [
       question.choices.map((choice) => ({
-        text: choice.choice_id.toUpperCase(),
+        text: `${choice.choice_id.toUpperCase()}. ${truncateChoiceText(choice.text)}`,
         callback_data: `ans:${sessionId}:${choice.choice_id}`
       }))
     ]
@@ -569,13 +804,24 @@ function questionKeyboard(sessionId, question) {
 async function sendTelegramMessage(env, payload) {
   const token = env.TELEGRAM_BOT_TOKEN;
   if (!token) throw new Error("TELEGRAM_BOT_TOKEN is not configured");
+  const body = payload.html === true
+    ? {
+        ...payload,
+        text: String(payload.text ?? ""),
+        parse_mode: "HTML"
+      }
+    : {
+        ...payload,
+        text: String(payload.text ?? "")
+      };
   const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify(payload)
+    body: JSON.stringify(body)
   });
   if (!response.ok) {
-    throw new Error(`Telegram sendMessage failed: ${response.status}`);
+    const details = await response.text().catch(() => "");
+    throw new Error(`Telegram sendMessage failed: ${response.status}${details ? ` ${details}` : ""}`);
   }
 }
 
@@ -623,36 +869,6 @@ async function saveState(env, userId, state) {
   memoryStore.set(key, state);
 }
 
-function defaultState(userId) {
-  return {
-    profile: {
-      telegram_user_id: String(userId),
-      started_at: null,
-      chat_id: null
-    },
-    settings: defaultSettings(),
-    progress: {
-      total_attempts: 0,
-      correct_attempts: 0,
-      wrong_attempts: 0,
-      last_activity_at: null,
-      last_reminder_day: null,
-      last_reminder_at: null,
-      topic_stats: {},
-      rule_stats: {}
-    },
-    attempts: [],
-    active_session: null
-  };
-}
-
-function defaultSettings() {
-  return {
-    daily_reminder_enabled: true,
-    reminder_hour_local: 20
-  };
-}
-
 function defaultTopicStats() {
   return {
     attempts: 0,
@@ -698,11 +914,6 @@ function findLessonForSession(session, question) {
   return firstTopic ? lessonsByTopic[firstTopic]?.[0] ?? null : null;
 }
 
-function primarySourceLabel(sourceIds) {
-  const source = sourceById[sourceIds?.[0]];
-  return source?.citation_label ?? source?.title ?? sourceIds?.[0] ?? "DMV";
-}
-
 function groupByTopic(questionList) {
   const result = {};
   for (const question of questionList) {
@@ -737,3 +948,22 @@ function shuffle(items) {
 function shortId() {
   return crypto.randomUUID().slice(0, 8);
 }
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function escapeAttribute(value) {
+  return escapeHtml(value).replaceAll("\n", "");
+}
+
+const STOPWORDS = new Set([
+  "the", "and", "for", "with", "that", "this", "what", "when", "where", "how",
+  "why", "are", "you", "your", "can", "should", "from", "into", "about", "does",
+  "please", "tell", "help", "need", "quiz", "learn"
+]);
