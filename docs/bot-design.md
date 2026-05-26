@@ -1,6 +1,6 @@
 # Telegram Bot Design
 
-Last updated: 2026-05-25
+Last updated: 2026-05-26
 
 ## Scope
 
@@ -54,6 +54,8 @@ The current implementation keeps detailed attempts indefinitely so progress and 
 - Answers are inline buttons only.
 - Lessons and questions come from the reviewed KB.
 - The bot is conservative about scoring and only uses questions with valid answer source status.
-- Free-text in learn mode can call an LLM when configured, but it stays anchored to the current lesson.
+- Free-text in learn mode can call an LLM when configured, and it may answer broader DMV questions as long as it stays anchored to the current lesson.
+- Learn-mode questions can be asked between quiz answers while the session waits on an explicit `Next`.
+- Quiz/practice/review/test do not auto-advance after an answer; the next question appears only after `Next`.
 - Local smoke test: `npm run simulate:bot`.
 - Local terminal chat simulator: `npm run simulate:bot` (interactive).

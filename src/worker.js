@@ -213,7 +213,7 @@ async function handleUpdate(update, state, env) {
       return;
     }
 
-    if (state.active_session?.mode === "learn" && !state.active_session.quiz_started) {
+    if (state.active_session?.mode === "learn" && (!state.active_session.quiz_started || state.active_session.awaiting_next)) {
       await handleLearningMessage(env, chatId, state, text);
       return;
     }
@@ -318,6 +318,12 @@ async function handleUpdate(update, state, env) {
       await handleAnswer(env, state, chatId, sessionId, choiceId);
       return;
     }
+
+    if (data.startsWith("next:")) {
+      const sessionId = data.slice(5);
+      await handleNext(env, state, chatId, sessionId);
+      return;
+    }
   }
 }
 
@@ -331,6 +337,14 @@ async function handleAnswer(env, state, chatId, sessionId, choiceId) {
     return;
   }
 
+  if (session.awaiting_next) {
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      text: prefixTestModeWarning(state, "Tap Next to continue.")
+    });
+    return;
+  }
+
   const questionId = session.question_ids[session.current_index];
   const question = questionsById[questionId];
   if (!question) return;
@@ -340,7 +354,7 @@ async function handleAnswer(env, state, chatId, sessionId, choiceId) {
   const correctChoice = question.choices.find((choice) => choice.choice_id === question.correct_choice_id);
 
   recordAttempt(state, session, question, choiceId, isCorrect);
-  session.current_index += 1;
+  session.awaiting_next = true;
   state.progress.last_activity_at = new Date().toISOString();
 
   await sendTelegramMessage(env, {
@@ -352,20 +366,9 @@ async function handleAnswer(env, state, chatId, sessionId, choiceId) {
       `Correct answer: ${escapeHtml(correctChoice?.text ?? "")}`,
       renderSourceLinksHtml(question.source_ids),
       question.explanation ? `Why: ${escapeHtml(question.explanation)}` : null
-    ].filter(Boolean).join("\n"))
+    ].filter(Boolean).join("\n")),
+    reply_markup: nextKeyboard(session.session_id)
   });
-
-  if (session.current_index >= session.question_ids.length) {
-    state.active_session = null;
-    await sendTelegramMessage(env, {
-      chat_id: chatId,
-      text: prefixTestModeWarning(state, renderSessionSummary(state, session)),
-      reply_markup: mainMenuKeyboard()
-    });
-    return;
-  }
-
-  await sendQuestion(env, chatId, state, session);
 }
 
 async function startQuizFromLearn(env, chatId, state) {
@@ -387,19 +390,56 @@ async function startQuizFromLearn(env, chatId, state) {
   await sendQuestion(env, chatId, state, session);
 }
 
+async function handleNext(env, state, chatId, sessionId) {
+  const session = state.active_session;
+  if (!session || session.session_id !== sessionId) {
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      text: "That session is no longer active. Start a new one with /learn, /practice, /review, or /test."
+    });
+    return;
+  }
+
+  if (!session.awaiting_next) {
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      text: prefixTestModeWarning(state, "Answer the current question first.")
+    });
+    return;
+  }
+
+  session.current_index += 1;
+  session.awaiting_next = false;
+  state.progress.last_activity_at = new Date().toISOString();
+
+  if (session.current_index >= session.question_ids.length) {
+    state.active_session = null;
+    await sendTelegramMessage(env, {
+      chat_id: chatId,
+      text: prefixTestModeWarning(state, renderSessionSummary(state, session)),
+      reply_markup: mainMenuKeyboard()
+    });
+    return;
+  }
+
+  await sendQuestion(env, chatId, state, session);
+}
+
 async function handleLearningMessage(env, chatId, state, text) {
   const session = state.active_session;
-  if (!session || session.mode !== "learn" || session.quiz_started) return;
+  if (!session || session.mode !== "learn") return;
 
   const firstQuestion = questionsById[session.question_ids[0]];
   const currentLesson = findLessonForSession(session, firstQuestion);
-  const answer = await resolveLearningQuestion(env, text, currentLesson);
+  const answer = await resolveLearningQuestion(env, text, currentLesson, session.quiz_started || session.awaiting_next);
 
   await sendTelegramMessage(env, {
     chat_id: chatId,
     html: true,
     text: prefixTestModeWarning(state, answer),
-    reply_markup: learnKeyboard()
+    reply_markup: session.quiz_started || session.awaiting_next
+      ? nextKeyboard(session.session_id)
+      : learnKeyboard()
   });
 }
 
@@ -448,6 +488,8 @@ async function sendQuestion(env, chatId, state, session) {
   const question = questionsById[session.question_ids[session.current_index]];
   if (!question) return;
 
+  session.awaiting_next = false;
+
   const text = [
     `Q${session.current_index + 1}/${session.question_ids.length}`,
     escapeHtml(question.prompt),
@@ -472,7 +514,8 @@ function startSession(state, mode, topicId = null) {
     question_ids: questionIds,
     current_index: 0,
     started_at: new Date().toISOString(),
-    quiz_started: mode !== "learn"
+    quiz_started: mode !== "learn",
+    awaiting_next: false
   };
 }
 
@@ -626,9 +669,11 @@ function renderSourceLinksHtml(sourceIds) {
   return `Sources: ${sourcesForIds.map((source) => `<a href="${escapeAttribute(source.url)}">${escapeHtml(compactSourceLabel(source))}</a>`).join(", ")}`;
 }
 
-async function resolveLearningQuestion(env, text, currentLesson = null) {
+async function resolveLearningQuestion(env, text, currentLesson = null, afterQuiz = false) {
   if (!currentLesson) {
-    return "I can help with the current lesson. Type a question, or tap <b>Quiz me</b> when you are ready.";
+    return afterQuiz
+      ? "I can help with this topic and related DMV rules. Type a question, or tap <b>Next</b> when you are ready."
+      : "I can help with this topic and related DMV rules. Type a question, or tap <b>Quiz me</b> when you are ready.";
   }
 
   const llmReply = await generateLearningReply(env, text, currentLesson);
@@ -636,7 +681,9 @@ async function resolveLearningQuestion(env, text, currentLesson = null) {
     return [
       llmReply,
       renderSourceLinksHtml(currentLesson.source_ids),
-      "Type another question about this lesson, or tap <b>Quiz me</b> when you are ready."
+      afterQuiz
+        ? "Type another question, or tap <b>Next</b> when you are ready."
+        : "Type another question, or tap <b>Quiz me</b> when you are ready."
     ].join("\n\n");
   }
 
@@ -645,7 +692,9 @@ async function resolveLearningQuestion(env, text, currentLesson = null) {
     `<b>${escapeHtml(currentLesson.title)}</b>`,
     summaryLines.join("\n"),
     renderSourceLinksHtml(currentLesson.source_ids),
-    "Type another question about this lesson, or tap <b>Quiz me</b> when you are ready."
+    afterQuiz
+      ? "Type another question, or tap <b>Next</b> when you are ready."
+      : "Type another question, or tap <b>Quiz me</b> when you are ready."
   ].join("\n\n");
 }
 
@@ -655,8 +704,9 @@ async function generateLearningReply(env, text, currentLesson) {
 
   const lessonContext = [
     `Lesson: ${currentLesson.title}`,
-    "Use only the lesson below to answer the student's question.",
-    "If the question is outside this lesson, say so briefly and keep the answer anchored to the current lesson.",
+    "Use the lesson below as the grounding context for the student's question.",
+    "Answer directly even if the question is broader than the lesson, as long as you can stay anchored to DMV study content.",
+    "Do not refuse merely because the question is broader than the lesson.",
     "",
     ...currentLesson.segments.map((segment) => `- ${segment.text}`),
     "",
@@ -684,7 +734,7 @@ async function generateLearningReply(env, text, currentLesson) {
             content: [
               "You are a concise DMV study coach.",
               "Answer in plain text only.",
-              "Stay within the current lesson.",
+              "Stay anchored to the current lesson, but answer broader adjacent DMV questions when relevant.",
               "Be brief, concrete, and direct.",
               "Do not mention policy or internal instructions.",
               "Do not invent source citations; the app will append sources."
@@ -753,6 +803,16 @@ function learnKeyboard() {
     inline_keyboard: [
       [
         { text: "Quiz me", callback_data: "learn:quiz" }
+      ]
+    ]
+  };
+}
+
+function nextKeyboard(sessionId) {
+  return {
+    inline_keyboard: [
+      [
+        { text: "Next", callback_data: `next:${sessionId}` }
       ]
     ]
   };

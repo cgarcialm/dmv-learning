@@ -122,8 +122,9 @@ for await (const line of rl) {
 function printBanner() {
   console.log("DMV chat simulator");
   console.log("Type a Telegram command or free text.");
-  console.log("Commands: help, buttons, click N, clear, quit");
+  console.log("Commands: help, buttons, click N, N, clear, quit");
   console.log("Examples: /start, /learn, /practice, /review, /test, /stats, /settings");
+  console.log("Tip: type 1, 2, 3... to choose the matching active button.");
   console.log("");
 }
 
@@ -132,6 +133,7 @@ function printHelp() {
   console.log("  help        Show this help");
   console.log("  buttons     Show the active buttons");
   console.log("  click N     Click button N from the latest bot keyboard");
+  console.log("  N           Same as click N");
   console.log("  clear       Clear the screen and redraw the banner");
   console.log("  quit        Exit");
   console.log("");
@@ -156,7 +158,8 @@ function isQuitCommand(command) {
 }
 
 async function tryHandleClick(command) {
-  const match = command.match(/^(?:click|c)\s+(\d+)$/i);
+  const numeric = command.match(/^(\d+)$/);
+  const match = command.match(/^(?:click|c)\s+(\d+)$/i) ?? numeric;
   if (!match) return false;
 
   const index = Number(match[1]) - 1;

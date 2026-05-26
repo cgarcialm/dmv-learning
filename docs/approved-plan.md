@@ -23,7 +23,7 @@ The v1 app should use a reviewed structured knowledge base for core lessons and 
 - Bot tone: concise coach.
 - Citations: every lesson, explanation, correction, and answer cites sources.
 - Citation UX: compact citation label plus a Sources button.
-- Live AI: mostly static content, AI for explain-more and free-form questions in learn mode, anchored to the current lesson.
+- Live AI: mostly static content, AI for explain-more and free-form questions in learn mode, anchored to the current lesson but not hard-limited to it.
 - Progress retention: keep all detailed attempt history indefinitely.
 - Export: owner-only `/export`.
 - Quiz controls: Telegram inline buttons only.
@@ -39,7 +39,7 @@ Done:
 - Live Telegram webhook flow.
 - Local simulator and preview tooling.
 - Compact source labels and clickable source links.
-- Learn mode with optional LLM-backed free-text help, anchored to the current lesson.
+- Learn mode with optional LLM-backed free-text help, anchored to the current lesson but allowed to answer broader adjacent DMV questions.
 - User-facing test mode toggle with warning banner.
 - Deterministic quiz/test scoring from the KB.
 
@@ -53,7 +53,7 @@ Not done:
 ## Re-Scoped Roadmap
 
 1. **Learn-mode hardening**
-   - Keep learn-mode AI bounded to the current lesson.
+   - Keep learn-mode AI grounded in the current lesson without blocking broader DMV questions.
    - Make fallback behavior predictable when the model is unavailable.
    - Keep `Quiz me` as the only transition into quiz mode.
    - Keep source labels compact and clickable.

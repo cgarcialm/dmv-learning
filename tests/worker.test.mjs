@@ -142,7 +142,7 @@ test("learn text keeps the current lesson when no LLM key is configured", async 
 
   const messages = parseMessages(runtime.sentMessages);
   const reply = messages.at(-1);
-  assert.equal(String(reply.text).includes("Type another question about this lesson"), true);
+  assert.equal(String(reply.text).includes("Type another question"), true);
   assert.equal(reply.reply_markup.inline_keyboard[0][0].text, "Quiz me");
 });
 
@@ -181,6 +181,78 @@ test("Quiz me starts quiz mode and sends an answer keyboard", async () => {
   assert.ok(quizStart);
   assert.ok(question);
   assert.equal(question.reply_markup.inline_keyboard[0].length > 0, true);
+});
+
+test("answer feedback waits for Next before advancing", async () => {
+  const runtime = createRuntime();
+
+  await runtime.dispatch({
+    message: {
+      message_id: 1,
+      from: { id: 123, is_bot: false, first_name: "Test" },
+      chat: { id: 456, type: "private" },
+      date: Math.floor(Date.now() / 1000),
+      text: "/learn"
+    }
+  });
+
+  const learnMessages = parseMessages(runtime.sentMessages);
+  const learnPayload = learnMessages.at(-1);
+  const quizButton = learnPayload.reply_markup.inline_keyboard[0][0];
+  runtime.sentMessages.length = 0;
+
+  await runtime.dispatch({
+    callback_query: {
+      id: "cbq-1",
+      from: { id: 123, is_bot: false, first_name: "Test" },
+      message: {
+        message_id: 2,
+        chat: { id: 456, type: "private" }
+      },
+      data: quizButton.callback_data
+    }
+  });
+
+  const quizMessages = parseMessages(runtime.sentMessages);
+  const quizQuestion = quizMessages.find((message) => String(message.text).startsWith("Q1/"));
+  const answerButton = quizQuestion.reply_markup.inline_keyboard[0][0];
+  runtime.sentMessages.length = 0;
+
+  await runtime.dispatch({
+    callback_query: {
+      id: "cbq-2",
+      from: { id: 123, is_bot: false, first_name: "Test" },
+      message: {
+        message_id: 3,
+        chat: { id: 456, type: "private" }
+      },
+      data: answerButton.callback_data
+    }
+  });
+
+  const afterAnswerMessages = parseMessages(runtime.sentMessages);
+  const feedback = afterAnswerMessages.find((message) => String(message.text).startsWith("Correct.") || String(message.text).startsWith("Incorrect."));
+  assert.ok(feedback);
+  assert.equal(feedback.reply_markup.inline_keyboard[0][0].text, "Next");
+  assert.equal(afterAnswerMessages.some((message) => String(message.text).startsWith("Q2/")), false);
+
+  runtime.sentMessages.length = 0;
+  const nextButton = feedback.reply_markup.inline_keyboard[0][0];
+
+  await runtime.dispatch({
+    callback_query: {
+      id: "cbq-3",
+      from: { id: 123, is_bot: false, first_name: "Test" },
+      message: {
+        message_id: 4,
+        chat: { id: 456, type: "private" }
+      },
+      data: nextButton.callback_data
+    }
+  });
+
+  const nextMessages = parseMessages(runtime.sentMessages);
+  assert.equal(nextMessages.some((message) => String(message.text).startsWith("Q2/")), true);
 });
 
 test("practice starts a question flow", async () => {
