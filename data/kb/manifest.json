@@ -1,0 +1,17 @@
+{
+  "kb_version": "ca-class-c-pilot-2026-05-25",
+  "generated_at": "2026-05-26T00:12:14.057Z",
+  "source_policy": "official_dmv_only",
+  "scope": "pilot",
+  "license_note": "California Driver's Handbook, California Department of Motor Vehicles, licensed under CC BY-NC 4.0.",
+  "artifact_files": [
+    "manifest.json",
+    "sources.json",
+    "topics.json",
+    "rules.json",
+    "lessons.json",
+    "questions.json",
+    "official_sample_questions.json",
+    "test_profiles.json"
+  ]
+}

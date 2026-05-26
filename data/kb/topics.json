@@ -1,0 +1,50 @@
+[
+  {
+    "topic_id": "right_of_way",
+    "title": "Right-of-Way",
+    "description": "Rules for yielding, intersections, pedestrians, turning, and shared-road priority.",
+    "priority": 1
+  },
+  {
+    "topic_id": "signs_signals",
+    "title": "Signs and Signals",
+    "description": "Traffic signs, traffic signals, pavement markings, school bus lights, and regulatory warnings.",
+    "priority": 2
+  },
+  {
+    "topic_id": "speed_limits",
+    "title": "Speed Limits",
+    "description": "Basic Speed Law, special speed limits, road conditions, and speed choice.",
+    "priority": 3
+  },
+  {
+    "topic_id": "lane_changes_turns",
+    "title": "Lane Changes and Turns",
+    "description": "Turn positioning, signaling, blind-spot checks, merging, and highway entry or exit.",
+    "priority": 4
+  },
+  {
+    "topic_id": "parking_stopping",
+    "title": "Parking and Stopping",
+    "description": "Parallel parking, hill parking, curb colors, stopping lines, and prohibited stopping.",
+    "priority": 5
+  },
+  {
+    "topic_id": "safe_driving",
+    "title": "Safe Driving",
+    "description": "Defensive driving, visibility, following distance, distractions, and sharing the road.",
+    "priority": 6
+  },
+  {
+    "topic_id": "impaired_driving",
+    "title": "Alcohol, Drugs, and Impairment",
+    "description": "DUI rules, alcohol/drug effects, open containers, and safe choices around impairment.",
+    "priority": 7
+  },
+  {
+    "topic_id": "collisions_emergencies",
+    "title": "Collisions and Emergencies",
+    "description": "Collision reporting, emergency procedures, railroad safety, and legal responsibilities after crashes.",
+    "priority": 8
+  }
+]

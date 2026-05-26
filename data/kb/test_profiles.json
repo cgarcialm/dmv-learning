@@ -1,0 +1,25 @@
+[
+  {
+    "profile_id": "ca_class_c_pilot",
+    "title": "California Class C Pilot Test",
+    "question_style": "multiple_choice",
+    "questions_per_test": 15,
+    "passing_correct": 12,
+    "source_ids": [
+      "ca-dmv-sample-tests-index"
+    ],
+    "notes": "Pilot profile for validating the app flow. Full DMV-style profile should be verified before final test-mode launch."
+  },
+  {
+    "profile_id": "ca_class_c_full_candidate",
+    "title": "California Class C Full Test Candidate",
+    "question_style": "multiple_choice",
+    "questions_per_test": 46,
+    "passing_correct": 38,
+    "source_ids": [
+      "ca-dmv-handbook-root",
+      "ca-dmv-sample-tests-index"
+    ],
+    "notes": "Candidate profile based on current common Class C original license references. Must be reverified against official DMV test rules before production use."
+  }
+]

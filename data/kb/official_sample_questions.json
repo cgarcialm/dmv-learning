@@ -1,0 +1,1221 @@
+[
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q01",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 1,
+    "prompt": "When is it legal to drive off the road to pass another vehicle?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "If the vehicle ahead is turning left."
+      },
+      {
+        "choice_id": "b",
+        "text": "It is not legal under any conditions."
+      },
+      {
+        "choice_id": "c",
+        "text": "If there are two or more one-way lanes."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q02",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 2,
+    "prompt": "When a railroad crossing is not controlled, what is the speed limit when you are within 100 feet and cannot see for 400 feet in both directions?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "15 mph."
+      },
+      {
+        "choice_id": "b",
+        "text": "10 mph."
+      },
+      {
+        "choice_id": "c",
+        "text": "25 mph."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_speed_limits_002"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q03",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 3,
+    "prompt": "Which of the following is the proper procedure for parallel parking?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Drive forward into the space without stopping."
+      },
+      {
+        "choice_id": "b",
+        "text": "Stop next to the vehicle behind the open space, and then drive forward into the space."
+      },
+      {
+        "choice_id": "c",
+        "text": "Stop next to the vehicle in front of the open space, and then back into the space."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_lane_changes_turns_001",
+      "q_parking_stopping_001"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q04",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 4,
+    "prompt": "What speed should you be driving when entering onto a highway?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "At or near the speed of traffic."
+      },
+      {
+        "choice_id": "b",
+        "text": "Faster than the speed of traffic."
+      },
+      {
+        "choice_id": "c",
+        "text": "Slower than the speed of traffic."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_speed_limits_003"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q05",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 5,
+    "prompt": "How many feet away should you switch from high beam to low beam headlights when approaching a vehicle coming towards you?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "900 feet."
+      },
+      {
+        "choice_id": "b",
+        "text": "700 feet."
+      },
+      {
+        "choice_id": "c",
+        "text": "500 feet."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q06",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 6,
+    "prompt": "Who can legally park next to curb painted blue?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Someone who is either picking up or dropping off passengers at this location."
+      },
+      {
+        "choice_id": "b",
+        "text": "A person who is disabled and has a special placard or vehicle license plate for disabled persons."
+      },
+      {
+        "choice_id": "c",
+        "text": "A person who will only be parked at the curb for less than 15 minutes."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_parking_stopping_002"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q07",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 7,
+    "prompt": "What should you do when there is a school bus ahead that starts flashing yellow warning lights?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Slow down and prepare to stop."
+      },
+      {
+        "choice_id": "b",
+        "text": "Stop immediately and remain stopped."
+      },
+      {
+        "choice_id": "c",
+        "text": "Cautiously pass the school bus on the left."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_signs_signals_001"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q08",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 8,
+    "prompt": "Which of the following is a requirement of California's Basic Speed Law?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Always drive the speed limit, regardless of conditions."
+      },
+      {
+        "choice_id": "b",
+        "text": "Match your speed to that of your surrounding traffic."
+      },
+      {
+        "choice_id": "c",
+        "text": "Never drive faster than is safe for current conditions."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_speed_limits_001"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q09",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 9,
+    "prompt": "You must notify the DMV with 5 days, if you:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Paint your vehicle a different color."
+      },
+      {
+        "choice_id": "b",
+        "text": "Sell or transfer ownership of your vehicle."
+      },
+      {
+        "choice_id": "c",
+        "text": "Receive a traffic violation."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_1_q10",
+    "source_id": "ca-dmv-sample-test-1",
+    "source_question_number": 10,
+    "prompt": "Which of the following is an example of a safe driving practice?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Staring only at the middle of the road."
+      },
+      {
+        "choice_id": "b",
+        "text": "Always keep your eyes moving to scan the surroundings."
+      },
+      {
+        "choice_id": "c",
+        "text": "Using your high-beam headlights in the fog"
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q01",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 1,
+    "prompt": "What should you do when reaching an intersection where a person operating a motorized wheelchair has entered the crosswalk?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Remain stopped behind the crosswalk line until the motorized wheelchair has safely finished crossing."
+      },
+      {
+        "choice_id": "b",
+        "text": "Remain stopped behind the nearest crosswalk line until the motorized wheelchair is beyond the range of your vehicle."
+      },
+      {
+        "choice_id": "c",
+        "text": "Assume right-of-way if the motorized wheelchair stops in the crosswalk."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_right_of_way_002"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q02",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 2,
+    "prompt": "Which of the following is true about large trucks?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "They are made of many trailers, which make them more maneuverable than passenger vehicles."
+      },
+      {
+        "choice_id": "b",
+        "text": "They have large blind spots, which makes it difficult for the truck driver to see other vehicles."
+      },
+      {
+        "choice_id": "c",
+        "text": "They have large and powerful emergency brakes, which gives them the capability to stop quickly."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q03",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 3,
+    "prompt": "What is one of the most common causes of traffic collisions?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Paying attention to your surroundings."
+      },
+      {
+        "choice_id": "b",
+        "text": "Better traffic flow."
+      },
+      {
+        "choice_id": "c",
+        "text": "Driver distractions."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q04",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 4,
+    "prompt": "Any driver who willfully flees or attempts to evade law enforcement, during which a person is seriously injured, is subject to:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Imprisonment in a state prison for up to seven years."
+      },
+      {
+        "choice_id": "b",
+        "text": "A fine of less than $1,000."
+      },
+      {
+        "choice_id": "c",
+        "text": "Attending an anger-management class."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q05",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 5,
+    "prompt": "What should a driver do who is stopped at an intersection and wants to make a left turn?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Turn immediately if there are no pedestrians."
+      },
+      {
+        "choice_id": "b",
+        "text": "Take the right-of-way turn before oncoming traffic."
+      },
+      {
+        "choice_id": "c",
+        "text": "Give the right-of-way to any approaching vehicle that is close enough to be dangerous."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q06",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 6,
+    "prompt": "In addition to setting your parking brake, what should you do when parking on a hill?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Make sure the front vehicle wheels are parallel to the road."
+      },
+      {
+        "choice_id": "b",
+        "text": "Make sure your vehicle is left in the \"neutral\" position."
+      },
+      {
+        "choice_id": "c",
+        "text": "Make sure your vehicle is in the \"park\" position or in gear."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_parking_stopping_003"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q07",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 7,
+    "prompt": "You are under 18 years of age and have had your license for eight months. You may drive:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "At any time."
+      },
+      {
+        "choice_id": "b",
+        "text": "Between 5 a.m. and 11 p.m."
+      },
+      {
+        "choice_id": "c",
+        "text": "Between 7 a.m. and 8 p.m."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q08",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 8,
+    "prompt": "Where should you begin a left turn from a one-way street onto a one-way street?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "The lane closest to the center of the street."
+      },
+      {
+        "choice_id": "b",
+        "text": "The far-left lane."
+      },
+      {
+        "choice_id": "c",
+        "text": "You can turn from any lane."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [
+      "q_lane_changes_turns_002"
+    ],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q09",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 9,
+    "prompt": "You are required to notify DMV by filing a Report of Traffic Accident Occuring in California (SR-1) form if:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "You allowed a licensed driver from another state to drive your vehicle."
+      },
+      {
+        "choice_id": "b",
+        "text": "You were involved in a collision with more than $1,000 in damages."
+      },
+      {
+        "choice_id": "c",
+        "text": "You failed to pay your registration fees."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_2_q10",
+    "source_id": "ca-dmv-sample-test-2",
+    "source_question_number": 10,
+    "prompt": "At what point during a rainfall are roads slippery on a hot day?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Immediately after it has stopped raining."
+      },
+      {
+        "choice_id": "b",
+        "text": "For the first several minutes."
+      },
+      {
+        "choice_id": "c",
+        "text": "When it has been raining for a few hours."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q01",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 1,
+    "prompt": "What color curb does not allow vehicles to stop or park?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Yellow."
+      },
+      {
+        "choice_id": "b",
+        "text": "Red."
+      },
+      {
+        "choice_id": "c",
+        "text": "White."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q02",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 2,
+    "prompt": "You are required to notify DMV by filing a Report of Traffic Accident Occuring in California (SR-1) form if:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "You change your insurance company."
+      },
+      {
+        "choice_id": "b",
+        "text": "You were involved in a collision with an injury."
+      },
+      {
+        "choice_id": "c",
+        "text": "Your vehicle fails a smog test."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q03",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 3,
+    "prompt": "What is indicated by two sets of double yellow lines spaced 2 feet or more apart?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Lanes of traffic moving in the same direction."
+      },
+      {
+        "choice_id": "b",
+        "text": "Barrier."
+      },
+      {
+        "choice_id": "c",
+        "text": "Carpool/High-Occupancy (HOV) lane."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q04",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 4,
+    "prompt": "What should you do to make a right turn at an upcoming intersection?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Merge into the bicycle lane before making the turn."
+      },
+      {
+        "choice_id": "b",
+        "text": "Wait until the bicycle lane ends, then make the turn."
+      },
+      {
+        "choice_id": "c",
+        "text": "Make the turn from your current lane and do not enter the bicycle lane."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q05",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 5,
+    "prompt": "A highway has a posted speed limit of 65 mph. What does this mean?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "You must always drive 65 mph on that highway."
+      },
+      {
+        "choice_id": "b",
+        "text": "You may drive faster only if there are no other vehicles."
+      },
+      {
+        "choice_id": "c",
+        "text": "You must drive 65 mph only if driving conditions are ideal."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q06",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 6,
+    "prompt": "When is parking in a crosshatched (diagonal lines) area allowed?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "It is never allowed to park in a crosshatched (diagonal lines) area."
+      },
+      {
+        "choice_id": "b",
+        "text": "If the area is at least twenty feet away from a railroad track."
+      },
+      {
+        "choice_id": "c",
+        "text": "If the area is labeled as a bicycle lane, unless otherwise posted."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q07",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 7,
+    "prompt": "What should you do if your cell phone rings and you do not have a hands-free device?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Answer the call and keep the conversation short."
+      },
+      {
+        "choice_id": "b",
+        "text": "Do not answer the phone and let it go to voice mail."
+      },
+      {
+        "choice_id": "c",
+        "text": "Answer the call if you are stopped at a red light."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q08",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 8,
+    "prompt": "If a traffic signal is green, but traffic is blocking the intersection, what should you do?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Partially enter the intersection, as allowed by traffic."
+      },
+      {
+        "choice_id": "b",
+        "text": "Wait and do not enter the intersection until your vehicle can get completely across."
+      },
+      {
+        "choice_id": "c",
+        "text": "Drive around the traffic on the shoulder to help ease the congestion."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q09",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 9,
+    "prompt": "In which lane should you end your turn when making a right turn?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Any lane free of traffic."
+      },
+      {
+        "choice_id": "b",
+        "text": "The lane closest to the left edge of the road."
+      },
+      {
+        "choice_id": "c",
+        "text": "The lane closest to the right edge of the road."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_3_q10",
+    "source_id": "ca-dmv-sample-test-3",
+    "source_question_number": 10,
+    "prompt": "When is it required for you to obey directions from a crossing guard?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "At all times."
+      },
+      {
+        "choice_id": "b",
+        "text": "During school hours only."
+      },
+      {
+        "choice_id": "c",
+        "text": "Only when children are present in front of a school."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q01",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 1,
+    "prompt": "Which of the following is true about large trucks?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "They are made of many trailers, which make them more maneuverable than passenger vehicles."
+      },
+      {
+        "choice_id": "b",
+        "text": "They have large blind spots, which makes it difficult for the truck driver to see other vehicles."
+      },
+      {
+        "choice_id": "c",
+        "text": "They have large and powerful emergency brakes, which gives them the capability to stop quickly."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q02",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 2,
+    "prompt": "Which of the following is illegal while driving?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Wearing a headset or ear plugs that covers both ears."
+      },
+      {
+        "choice_id": "b",
+        "text": "Wearing a headset or ear plugs that covers one ear."
+      },
+      {
+        "choice_id": "c",
+        "text": "Using cruise control on residential streets."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q03",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 3,
+    "prompt": "What should you do when traffic is slow and heavy, and you must cross railroad tracks before reaching the upcoming intersection?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Begin crossing when the vehicle in front of you is crossing the tracks."
+      },
+      {
+        "choice_id": "b",
+        "text": "Wait on the tracks until the stoplight at the intersection turns green."
+      },
+      {
+        "choice_id": "c",
+        "text": "Wait until you can completely cross the tracks before proceeding."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q04",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 4,
+    "prompt": "Which of the following should you do if you are being followed by a tailgater?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Change lanes and allow the tailgater to pass."
+      },
+      {
+        "choice_id": "b",
+        "text": "Tap the brakes to signal you are moving at a slower pace."
+      },
+      {
+        "choice_id": "c",
+        "text": "Increase your speed to match the speed of the vehicle."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q05",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 5,
+    "prompt": "When you are driving the speed limit, you can be given a speeding ticket:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "If road or weather conditions require a slower speed."
+      },
+      {
+        "choice_id": "b",
+        "text": "Under no circumstances because it is always legal."
+      },
+      {
+        "choice_id": "c",
+        "text": "Only if you are approaching a sharp curve in the road."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q06",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 6,
+    "prompt": "Which lights should be used if a driver is having trouble seeing other vehicles because of dust or smoke blowing across the roadway?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Parking lights."
+      },
+      {
+        "choice_id": "b",
+        "text": "Emergency lights."
+      },
+      {
+        "choice_id": "c",
+        "text": "Headlights."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q07",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 7,
+    "prompt": "What should you do to make a right turn at an upcoming intersection?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Wait until the bicycle lane ends, then make the turn."
+      },
+      {
+        "choice_id": "b",
+        "text": "Make the turn from your current lane and do not enter the bicycle lane."
+      },
+      {
+        "choice_id": "c",
+        "text": "Merge into the bicycle lane before making the turn."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q08",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 8,
+    "prompt": "What does a flashing yellow traffic signal light direct a driver to do?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Stop and proceed when the traffic allows you to proceed safely."
+      },
+      {
+        "choice_id": "b",
+        "text": "Slow down and proceed with caution."
+      },
+      {
+        "choice_id": "c",
+        "text": "Stop and wait for a flashing green signal."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q09",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 9,
+    "prompt": "What should you do if a pedestrian is still in the crosswalk after the \"DON\"T WALK\" sign begins to flash and your light has turned green?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Wait until the pedestrian is out of your path before proceeding."
+      },
+      {
+        "choice_id": "b",
+        "text": "Wait until the pedestrian signals that it is okay for you to proceed."
+      },
+      {
+        "choice_id": "c",
+        "text": "Wait until the pedestrian has crossed the street completely before proceeding."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_4_q10",
+    "source_id": "ca-dmv-sample-test-4",
+    "source_question_number": 10,
+    "prompt": "When is it legal for a person to drive with an alcoholic beverage container that has been opened?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "If the container is under the front seat."
+      },
+      {
+        "choice_id": "b",
+        "text": "If the container is in the trunk of the vehicle."
+      },
+      {
+        "choice_id": "c",
+        "text": "If the container is in the glove compartment."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "official_answer_key",
+    "linked_question_ids": [],
+    "answer_source_detail": "Correct answer parsed from the official DMV result page after submitting the sample test online."
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q01",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 1,
+    "prompt": "You are driving on the freeway. The vehicle in front of you is a large truck. You should drive:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Closely behind the truck in bad weather because the driver can see farther ahead."
+      },
+      {
+        "choice_id": "b",
+        "text": "Farther behind the truck than you would for a passenger vehicle."
+      },
+      {
+        "choice_id": "c",
+        "text": "No more than one car length behind the truck so the driver can see you."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Large trucks have bigger blind spots and need more stopping distance; the safe choice is to follow farther behind than for a passenger vehicle.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q02",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 2,
+    "prompt": "All of the following practices are dangerous to do while driving. Which of these is also illegal?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Listening to music through headphones that cover both ears."
+      },
+      {
+        "choice_id": "b",
+        "text": "Adjusting your outside mirrors."
+      },
+      {
+        "choice_id": "c",
+        "text": "Transporting an unrestrained animal inside the vehicle."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. California rules prohibit wearing a headset or earplugs covering both ears while driving.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q03",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 3,
+    "prompt": "Always stop before you cross railroad tracks when:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "You don't have room on the other side to completely cross the tracks."
+      },
+      {
+        "choice_id": "b",
+        "text": "The railroad crossing is located in a city or town that has frequent train traffic."
+      },
+      {
+        "choice_id": "c",
+        "text": "You transport two or more young children in a passenger vehicle."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Do not start across railroad tracks unless there is enough room to completely cross them.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q04",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 4,
+    "prompt": "When you tailgate other drivers (drive close to their rear bumper):",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "You can frustrate the other drivers and make them angry."
+      },
+      {
+        "choice_id": "b",
+        "text": "Your actions cannot result in a traffic citation."
+      },
+      {
+        "choice_id": "c",
+        "text": "You help reduce traffic congestion."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Tailgating can frustrate other drivers and create unsafe conditions.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q05",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 5,
+    "prompt": "Should you always drive slower than other traffic?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "No, you can block traffic when you drive too slowly."
+      },
+      {
+        "choice_id": "b",
+        "text": "Yes, it is a good defensive driving technique."
+      },
+      {
+        "choice_id": "c",
+        "text": "Yes, it is always safer than driving faster than other traffic."
+      }
+    ],
+    "correct_choice_id": "a",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Driving too slowly can block normal traffic flow.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q06",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 6,
+    "prompt": "You see a signal person at a road construction site ahead. You should obey his or her instructions:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Only if you see orange cones on the road ahead."
+      },
+      {
+        "choice_id": "b",
+        "text": "Unless they conflict with existing signs, signals, or laws."
+      },
+      {
+        "choice_id": "c",
+        "text": "At all times."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Drivers must obey instructions from road workers, flaggers, or signal persons.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q07",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 7,
+    "prompt": "When can you drive in a bike lane?",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "During rush hour traffic if there are no bicyclists in the bike lane."
+      },
+      {
+        "choice_id": "b",
+        "text": "When you are within 200 feet of a cross street where you plan to turn right."
+      },
+      {
+        "choice_id": "c",
+        "text": "When you want to pass a driver ahead of you who is turning right."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Drivers may enter a bike lane within 200 feet of an intersection or driveway when preparing for a right turn.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q08",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 8,
+    "prompt": "You see a flashing yellow traffic signal at an upcoming intersection. The flashing yellow light means:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Stop before entering the intersection as long as you can do so safely."
+      },
+      {
+        "choice_id": "b",
+        "text": "Stop. Yield to all cross traffic before crossing the intersection."
+      },
+      {
+        "choice_id": "c",
+        "text": "Slow down and cross the intersection carefully."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. A flashing yellow traffic signal means slow down and proceed carefully.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q09",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 9,
+    "prompt": "There is no crosswalk and you see a pedestrian crossing your lane ahead. You should:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "Make eye contact and then pass him/her."
+      },
+      {
+        "choice_id": "b",
+        "text": "Slow down as you pass him/her."
+      },
+      {
+        "choice_id": "c",
+        "text": "Stop and let him/her finish crossing the street."
+      }
+    ],
+    "correct_choice_id": "c",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. Yield to pedestrians crossing the roadway and let them finish crossing your lane.",
+    "linked_question_ids": []
+  },
+  {
+    "sample_question_id": "ca_dmv_sample_test_5_q10",
+    "source_id": "ca-dmv-sample-test-5",
+    "source_question_number": 10,
+    "prompt": "A solid yellow line next to a broken yellow line means that vehicles:",
+    "choices": [
+      {
+        "choice_id": "a",
+        "text": "In both directions may pass."
+      },
+      {
+        "choice_id": "b",
+        "text": "Next to the broken line may pass."
+      },
+      {
+        "choice_id": "c",
+        "text": "Next to the solid line may pass."
+      }
+    ],
+    "correct_choice_id": "b",
+    "answer_source_status": "handbook_verified",
+    "answer_source_detail": "Official prompt and choices parsed from ca-dmv-sample-test-5; correct answer handbook-verified. On a road with one solid yellow line next to one broken yellow line, vehicles next to the broken line may pass when safe.",
+    "linked_question_ids": []
+  }
+]

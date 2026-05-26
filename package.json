@@ -1,0 +1,13 @@
+{
+  "name": "dmv-learning",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "kb:generate": "node scripts/generate-kb.mjs",
+    "kb:validate": "node scripts/generate-kb.mjs --validate-only"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

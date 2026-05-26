@@ -1,0 +1,393 @@
+[
+  {
+    "lesson_id": "lesson_right_of_way_basics",
+    "topic_ids": [
+      "right_of_way"
+    ],
+    "title": "Right-of-Way Basics",
+    "segments": [
+      {
+        "segment_id": "lesson_right_of_way_basics_segment_1",
+        "text": "Right-of-way is about preventing conflicts, not forcing your turn. When another road user is legally or practically in your path, yield until the movement is safe.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-7-laws-road",
+          "ca-dmv-sample-test-1"
+        ]
+      },
+      {
+        "segment_id": "lesson_right_of_way_basics_segment_2",
+        "text": "Left turns are a common test topic: if an approaching vehicle is close enough to be dangerous, wait before completing the turn.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-7-laws-road",
+          "ca-dmv-sample-test-1"
+        ]
+      },
+      {
+        "segment_id": "lesson_right_of_way_basics_segment_3",
+        "text": "Pedestrians and people using mobility devices in crosswalks require extra caution. Stay stopped until they are safely clear of your vehicle's path.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-7-laws-road",
+          "ca-dmv-sample-test-1"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "right_of_way_left_turn_oncoming",
+      "right_of_way_crosswalk_mobility_device",
+      "right_of_way_highway_traffic"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-6-navigating-roads",
+      "ca-dmv-sample-test-2",
+      "ca-dmv-handbook-section-7-laws-road",
+      "ca-dmv-sample-test-1"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_signs_signals_basics",
+    "topic_ids": [
+      "signs_signals"
+    ],
+    "title": "Signs and Signals Basics",
+    "segments": [
+      {
+        "segment_id": "lesson_signs_signals_basics_segment_1",
+        "text": "Signals and markings tell you what action is allowed or required before you move.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_signs_signals_basics_segment_2",
+        "text": "At stops, use the limit line first. If there is no limit line, stop before the crosswalk or intersection.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_signs_signals_basics_segment_3",
+        "text": "School bus yellow warning lights mean slow down and prepare to stop.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "signs_signals_school_bus_yellow",
+      "signs_signals_red_light_right_turn",
+      "signs_signals_stop_behind_limit_line"
+    ],
+    "source_ids": [
+      "ca-dmv-sample-test-1",
+      "ca-dmv-handbook-section-6-navigating-roads"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_speed_limits_basics",
+    "topic_ids": [
+      "speed_limits"
+    ],
+    "title": "Speed Limits Basics",
+    "segments": [
+      {
+        "segment_id": "lesson_speed_limits_basics_segment_1",
+        "text": "The posted speed limit is not permission to drive that speed in every situation.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving-cont2",
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_speed_limits_basics_segment_2",
+        "text": "California's Basic Speed Law requires you to drive no faster than is safe for conditions.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving-cont2",
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_speed_limits_basics_segment_3",
+        "text": "Some situations have specific lower limits, including limited-visibility uncontrolled railroad crossings.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving-cont2",
+          "ca-dmv-sample-test-1",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "speed_limits_basic_speed_law",
+      "speed_limits_railroad_crossing_visibility",
+      "speed_limits_highway_entry"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-8-safe-driving-cont2",
+      "ca-dmv-sample-test-1",
+      "ca-dmv-handbook-section-6-navigating-roads"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_lane_changes_turns_basics",
+    "topic_ids": [
+      "lane_changes_turns"
+    ],
+    "title": "Lane Changes and Turns Basics",
+    "segments": [
+      {
+        "segment_id": "lesson_lane_changes_turns_basics_segment_1",
+        "text": "Good turns start from the correct lane, use a signal, and finish in the proper lane.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-1"
+        ]
+      },
+      {
+        "segment_id": "lesson_lane_changes_turns_basics_segment_2",
+        "text": "Before merging or changing lanes, use mirrors, signal, and check blind spots.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-1"
+        ]
+      },
+      {
+        "segment_id": "lesson_lane_changes_turns_basics_segment_3",
+        "text": "When entering a highway, match traffic speed when possible and merge into a safe gap.",
+        "source_ids": [
+          "ca-dmv-handbook-section-6-navigating-roads",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-1"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "lane_changes_turns_right_turn_position",
+      "lane_changes_turns_left_turn_position",
+      "lane_changes_turns_signal_blind_spot",
+      "right_of_way_highway_traffic"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-6-navigating-roads",
+      "ca-dmv-sample-test-2",
+      "ca-dmv-sample-test-1"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_parking_stopping_basics",
+    "topic_ids": [
+      "parking_stopping"
+    ],
+    "title": "Parking and Stopping Basics",
+    "segments": [
+      {
+        "segment_id": "lesson_parking_stopping_basics_segment_1",
+        "text": "Stopping position matters: use limit lines, crosswalks, and intersection edges as your order of priority.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_parking_stopping_basics_segment_2",
+        "text": "Parking questions often test curb colors, hill safety, and parallel parking setup.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      },
+      {
+        "segment_id": "lesson_parking_stopping_basics_segment_3",
+        "text": "When parking on a hill, secure the car so it cannot roll.",
+        "source_ids": [
+          "ca-dmv-sample-test-1",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-handbook-section-6-navigating-roads"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "parking_stopping_parallel_parking",
+      "parking_stopping_blue_curb",
+      "parking_stopping_hill_parking",
+      "signs_signals_stop_behind_limit_line"
+    ],
+    "source_ids": [
+      "ca-dmv-sample-test-1",
+      "ca-dmv-sample-test-2",
+      "ca-dmv-handbook-section-6-navigating-roads"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_safe_driving_core",
+    "topic_ids": [
+      "safe_driving"
+    ],
+    "title": "Safe Driving Core",
+    "segments": [
+      {
+        "segment_id": "lesson_safe_driving_core_segment_1",
+        "text": "Safe driving depends on space, visibility, scanning, and avoiding distractions.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5"
+        ]
+      },
+      {
+        "segment_id": "lesson_safe_driving_core_segment_2",
+        "text": "Give large trucks and motorcycles more room because they handle and stop differently from passenger vehicles.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5"
+        ]
+      },
+      {
+        "segment_id": "lesson_safe_driving_core_segment_3",
+        "text": "Adjust speed and following distance for rain, smoke, dust, traffic, and other conditions.",
+        "source_ids": [
+          "ca-dmv-handbook-section-8-safe-driving",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "safe_driving_following_distance",
+      "safe_driving_scan_road",
+      "safe_driving_large_trucks_blind_spots",
+      "safe_driving_rain_first_minutes"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-8-safe-driving",
+      "ca-dmv-sample-test-2",
+      "ca-dmv-sample-test-4",
+      "ca-dmv-sample-test-5"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_impaired_driving_core",
+    "topic_ids": [
+      "impaired_driving"
+    ],
+    "title": "Impairment Rules",
+    "segments": [
+      {
+        "segment_id": "lesson_impaired_driving_core_segment_1",
+        "text": "Alcohol and drugs can affect judgment, coordination, and reaction time.",
+        "source_ids": [
+          "ca-dmv-handbook-section-9-alcohol-drugs",
+          "ca-dmv-sample-test-4"
+        ]
+      },
+      {
+        "segment_id": "lesson_impaired_driving_core_segment_2",
+        "text": "Open alcohol containers must not be accessible to the driver or passengers.",
+        "source_ids": [
+          "ca-dmv-handbook-section-9-alcohol-drugs",
+          "ca-dmv-sample-test-4"
+        ]
+      },
+      {
+        "segment_id": "lesson_impaired_driving_core_segment_3",
+        "text": "Drivers under 21 have stricter alcohol-related rules.",
+        "source_ids": [
+          "ca-dmv-handbook-section-9-alcohol-drugs",
+          "ca-dmv-sample-test-4"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "impaired_driving_open_container_trunk",
+      "impaired_driving_drugs_affect_driving",
+      "impaired_driving_dui_zero_tolerance_under21"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-9-alcohol-drugs",
+      "ca-dmv-sample-test-4"
+    ],
+    "review_status": "draft"
+  },
+  {
+    "lesson_id": "lesson_collisions_emergencies_core",
+    "topic_ids": [
+      "collisions_emergencies"
+    ],
+    "title": "Collisions and Emergencies",
+    "segments": [
+      {
+        "segment_id": "lesson_collisions_emergencies_core_segment_1",
+        "text": "After a collision, stop, check for injuries, exchange required information, and report when required.",
+        "source_ids": [
+          "ca-dmv-handbook-section-10-insurance-collisions",
+          "ca-dmv-handbook-section-7-laws-road-cont1",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-3"
+        ]
+      },
+      {
+        "segment_id": "lesson_collisions_emergencies_core_segment_2",
+        "text": "Never enter railroad tracks unless you can completely clear them.",
+        "source_ids": [
+          "ca-dmv-handbook-section-10-insurance-collisions",
+          "ca-dmv-handbook-section-7-laws-road-cont1",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-3"
+        ]
+      },
+      {
+        "segment_id": "lesson_collisions_emergencies_core_segment_3",
+        "text": "Some collisions require filing an SR-1 report with DMV.",
+        "source_ids": [
+          "ca-dmv-handbook-section-10-insurance-collisions",
+          "ca-dmv-handbook-section-7-laws-road-cont1",
+          "ca-dmv-sample-test-4",
+          "ca-dmv-sample-test-5",
+          "ca-dmv-sample-test-2",
+          "ca-dmv-sample-test-3"
+        ]
+      }
+    ],
+    "rule_ids": [
+      "collisions_stop_after_collision",
+      "collisions_railroad_clearance",
+      "collisions_sr1_report_injury"
+    ],
+    "source_ids": [
+      "ca-dmv-handbook-section-10-insurance-collisions",
+      "ca-dmv-handbook-section-7-laws-road-cont1",
+      "ca-dmv-sample-test-4",
+      "ca-dmv-sample-test-5",
+      "ca-dmv-sample-test-2",
+      "ca-dmv-sample-test-3"
+    ],
+    "review_status": "draft"
+  }
+]
