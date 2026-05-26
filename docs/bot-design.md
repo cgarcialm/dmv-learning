@@ -56,3 +56,4 @@ The current implementation keeps detailed attempts indefinitely so progress and 
 - The bot is conservative about scoring and only uses questions with valid answer source status.
 - Free-text in learn mode can call an LLM when configured, but it stays anchored to the current lesson.
 - Local smoke test: `npm run simulate:bot`.
+- Local terminal chat simulator: `npm run simulate:bot` (interactive).
